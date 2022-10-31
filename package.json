@@ -9,9 +9,21 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@xata.io/client": "^0.20.0",
+    "axios": "^1.1.3",
+    "bcrypt": "^5.1.0",
+    "bcryptjs": "^2.4.3",
+    "google-maps-react": "^2.0.6",
+    "js-base64": "^3.7.2",
+    "moment": "^2.29.4",
     "next": "13.0.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-hook-form": "^7.38.0",
+    "react-icons": "^4.6.0",
+    "reactjs-popup": "^2.0.5",
+    "sass": "^1.55.0",
+    "swiper": "^8.4.4"
   },
   "devDependencies": {
     "eslint": "8.26.0",

@@ -1,0 +1,7 @@
+{
+  "databaseURL": "https://rasaq-adewuyi-s-workspace-pki63j.us-east-1.xata.sh/db/accomodate",
+  "codegen": {
+    "output": "utils.xata.js",
+    "moduleType": "esm"
+  }
+}
