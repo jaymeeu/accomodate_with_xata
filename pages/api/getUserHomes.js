@@ -5,13 +5,17 @@ const xata = getXataClient()
 
 const getUserHomes = async (req, res) => {
 
-  console.log(req.body.user_id,"user_id req req")
-    // const records = await xata.db.homes.filter("category", "beach");
+  // console.log(req.body.user_id,"user_id req req")
 
-const records = await xata.db.users.filter("email" , "rasaqadewuyi@gmail.com");
-    
-    // const records = await xata.db.homes.read("rec_cdep3dpg1ij7ma5jvro0");
-    return res.send(JSON.stringify(records));
+  const records =  await xata.db.homes
+  .filter("host.id", req.body.user_id)
+  .select(["*", "host.*"])
+  .getPaginated({
+    pagination: {
+      size: 15,
+    },
+  });
+  return res.send(JSON.stringify(records));
   
 }
 export default getUserHomes

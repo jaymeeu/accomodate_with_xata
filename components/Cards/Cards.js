@@ -50,7 +50,7 @@ function Cards({ data }) {
                 </div>
             </div>
             <div className={styles.greyer}>
-                Hosted by {data?.host?.id}
+                Hosted by {data?.host?.fullname}
             </div>
             <div className={styles.greyer}>
                 {moment(data?.dateFrom).format('MMM DD')} - {moment(data?.dateTill).format('MMM DD')}

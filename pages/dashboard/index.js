@@ -18,8 +18,7 @@ export default function index() {
 
     useEffect(() => {
         getUserHomes()
-        const data = homes.filter((home) => home.category === 'OMG!')
-        setData(data)
+        
     }, [])
 
     const getUserHomes = async () => {
@@ -27,7 +26,7 @@ export default function index() {
         if (user_id) {
             await axios.post('/api/getUserHomes', {"user_id" : user_id})
                 .then((res) => {
-                    console.log(res, 'response')
+                    setData(res.data.records)
                 })
                 .catch((error) => {console.log(error, "error")})
                 .finally(() => { })
