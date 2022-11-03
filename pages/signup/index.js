@@ -24,7 +24,6 @@ const index = () => {
                 setshowUserExit(true)
             }
             else{
-
                 localStorage.setItem("user_info", 
                 JSON.stringify({
                     "user_id" : response.data.id,

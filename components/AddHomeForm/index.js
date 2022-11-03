@@ -60,7 +60,7 @@ export default function index({closeModal}) {
                 redirect: 'follow',
             }
             fetch(
-                'https://api.cloudinary.com/v1_1/dhzeiianw/image/upload',
+                `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`,
                 requestOptions,
             ).then((response) => {
                 return response.json()
@@ -72,12 +72,10 @@ export default function index({closeModal}) {
                 }})
         }
         else{
-
-            console.log(array_links, "array_linksarray_linksarray_links")
             data.images_links = array_links
             data.user_id = user_id
 
-           await axios.post('/api/addHome', data)
+            await axios.post('/api/addHome', data)
             .then((res)=>console.log(res, 'result'))
             .catch((err)=>console.log(err, 'error'))
             .finally(()=>{
