@@ -80,7 +80,7 @@ export default function Badges({ onClick, active }) {
                 onClick={() => handleClick(badge)}
                 style={{color : badge.text === active  ? "#000000" : "#717171"}}
               >
-                <Image id='image' src={badge.image}
+                <Image id='image' src={badge.image} alt={badge?.text}
                   style={{opacity : badge.text === active  ? "1" : "0.6"}}
                 />
                 <span id='tab_flex' className={badge.text === active  ? styles.tab_flex_active : styles.tab_flex}>

@@ -9,6 +9,7 @@ import { Navigation, Pagination } from "swiper";
 import { AiFillStar } from 'react-icons/ai'
 import { FiHeart } from 'react-icons/fi'
 import moment from "moment"
+import Image from 'next/image';
 
 function Cards({ data }) {
 
@@ -36,7 +37,7 @@ function Cards({ data }) {
                     {
                         data?.images_links?.map((img, index) => (
                             <SwiperSlide key={index} className={styles.swiper_slide_}>
-                                <img className={styles.images} src={img} />
+                                <img className={styles.images} src={img} alt={index} />
                             </SwiperSlide>
                         ))
                     }

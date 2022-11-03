@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import logo from '../../public/images/logo.png'
 import { BiSearch } from 'react-icons/bi'
 import { FaUserCircle } from 'react-icons/fa'
 import { ImEqualizer } from 'react-icons/im'
 import styles from './Header.module.css'
-import Image from 'next/image'
 import Link from 'next/link'
 import {useRouter} from 'next/router'
 
@@ -26,8 +24,12 @@ const Header = () => {
     return (
         <>
             <div className={`${styles.header_container} ${styles.space_between}`}>
-    <           Link href="/">
-                    <Image src={logo} alt="airbnb logo" className={styles.logo_image} />
+    <           Link href="/" style={{textDecoration : 'none', userSelect:'none'}}>
+                    {/* <Image src={logo} alt="airbnb logo" className={styles.logo_image} /> */}
+                   <span style={{
+                    color:'rgb(84, 105, 212)',
+                    fontSize : "24px", 
+                    }}>Accomodate</span>
                 </Link>
 
                 <div className={styles.center_div}>

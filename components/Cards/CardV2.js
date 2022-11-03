@@ -8,6 +8,7 @@ import styles from "./Cards.module.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { AiFillStar } from 'react-icons/ai'
 import { FiHeart } from 'react-icons/fi'
+import Image from 'next/image';
 
 function CardV2({ data }) {
     return (
@@ -23,7 +24,7 @@ function CardV2({ data }) {
                     {
                         data?.images?.map((img, index) => (
                             <SwiperSlide key={index}>
-                                <img className={styles.imagesv2} src={img} />
+                                <Image className={styles.imagesv2} src={img} alt={index} />
                             </SwiperSlide>
                         ))
                     }

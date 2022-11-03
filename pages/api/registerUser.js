@@ -1,4 +1,4 @@
-import { getXataClient } from '../../utils/xata'
+import { getXataClient } from '../../utility/xata'
 import { Base64 } from 'js-base64';
 import bcrypt from 'bcryptjs'
 import {promisify} from 'util'

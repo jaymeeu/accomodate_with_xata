@@ -1,4 +1,4 @@
-import { getXataClient } from '../../utils/xata'
+import { getXataClient } from '../../utility/xata'
 
 const xata = getXataClient()
 

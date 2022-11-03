@@ -20,7 +20,6 @@ export default function Home() {
 
   useEffect(() => {
     getAllHomes();
-    
   }, [])
 
   const getAllHomes = async  ()  =>{
@@ -45,13 +44,14 @@ export default function Home() {
   return (
       <section className={styles.home}>
         <Head>
-          <title>Accomodate</title>
+          <title>Accomodate mkmkm</title>
           <meta name="description" content="Accomodate - home for you" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
         <div className={styles.header}>
           <Header />
+          {/* <h1>something</h1> */}
         </div>
         <div className={styles.main} style={{ paddingTop: showMap ? "0" : "100px" }}>
           <div className={styles.sticky_header}>

@@ -8,7 +8,7 @@ import axios from 'axios';
 import { badges } from '../../public/data';
 
 
-export default function index({closeModal}) {
+export default function AddHomeForm({closeModal}) {
 
     const [user_id, setuser_id] = useState('')
 

@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import styles from "./styles.module.css"
+import styles from "../styles/signup.module.css"
 import Link from "next/link"
 import axios from 'axios'
 import { useForm } from "react-hook-form";
 import { useRouter } from 'next/router';
 
-const index = () => {
+const Signup = () => {
 
     const router = useRouter();
 
@@ -99,4 +99,4 @@ const index = () => {
     )
 }
 
-export default index
+export default Signup

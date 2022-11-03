@@ -60,8 +60,9 @@ function CustomMap({ google, data }) {
 
     >
       {data?.map(
-        coords => (
+        (coords, index) => (
           <Marker
+          key={index}
             position={{ lat: coords?.lat, lng: coords.lng }}
             onClick={(e)=>onMarkerClick(e, coords)}
             name={coords?.title}

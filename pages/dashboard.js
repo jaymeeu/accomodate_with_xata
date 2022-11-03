@@ -1,22 +1,22 @@
 import Head from 'next/head'
 import React, { useEffect, useState } from 'react'
-import Cards from '../../components/Cards/Cards'
-import Header from '../../components/Header/Header'
-import { homes } from '../../public/homes'
-import styles from '../../styles/Home.module.css'
-import Modal from '../../components/Modal'
-import dashStyle from './styles.module.css'
+import Cards from '../components/Cards/Cards'
+import Header from '../components/Header/Header'
+import styles from '../styles/Home.module.css'
+import Modal from '../components/Modal'
+import dashStyle from '../styles/dashboard.module.css'
 import { IoMdAdd } from 'react-icons/io'
-import AddHomeForm from '../../components/AddHomeForm'
+import AddHomeForm from '../components/AddHomeForm'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 
-export default function index() {
+export default function Dashboard() {
     const router = useRouter();
     const [data, setData] = useState([])
+
     useEffect(() => {
         getUserHomes()
-    }, [])
+    }, [data])
 
     const getUserHomes = async () => {
         const user_id = JSON.parse(localStorage.getItem('user_info'))?.user_id
