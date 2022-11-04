@@ -19,36 +19,39 @@ export default function Dashboard() {
     const [openEdit, setopenEdit] = useState(false)
     const [id_to_ops, setid_to_ops] = useState('')
     const [data_to_edit, setdata_to_edit] = useState({})
-
+    const [loading, setloading] = useState(false)
     useEffect(() => {
         getUserHomes()
     }, [])
 
     const getUserHomes = async () => {
+        setloading(true)
         const user_id = JSON.parse(localStorage.getItem('user_info'))?.user_id
         if (user_id) {
-            await axios.post('/api/getUserHomes', {"user_id" : user_id})
+            await axios.post('/api/getUserHomes', { "user_id": user_id })
                 .then((res) => {
                     setData(res.data.records)
                 })
-                .catch((error) => {console.log(error, "error")})
-                .finally(() => { })
+                .catch((error) => { console.log(error, "error") })
+                .finally(() => {
+                    setloading(false)
+                })
         }
         else {
             router.push('login')
         }
     }
-const [deleting, setdeleting] = useState(false)
+    const [deleting, setdeleting] = useState(false)
 
     const deleteUserHomes = async (id) => {
         setdeleting(true)
-        await axios.post('/api/deleteHome', {"id" : id})
-            .then((res) => {getUserHomes()})
-            .catch((error) => {console.log(error, "error")})
+        await axios.post('/api/deleteHome', { "id": id })
+            .then((res) => { getUserHomes() })
+            .catch((error) => { console.log(error, "error") })
             .finally(() => {
                 setdeleting(false);
                 setopenDelete(false)
-             })
+            })
     }
 
 
@@ -66,21 +69,28 @@ const [deleting, setdeleting] = useState(false)
                 <Header />
             </div>
             <div className={styles.main} style={{ paddingTop: "100px" }}>
+                {
+                    loading ?
+                        <div className={styles.toCenter}>
+                            <span className={styles.loader}></span>
+                        </div>
+                        :
+                        <div className={styles.card_container}>
+                            {
+                                data?.map((home, index) => (
+                                    <div className={styles.col} key={index}>
+                                        <Cards
+                                            data={home}
+                                            showDelete={true}
+                                            editClick={(e) => { setdata_to_edit(e); setopenEdit(true) }}
+                                            deleteClick={(e) => { setid_to_ops(e); setopenDelete(true) }}
+                                        />
+                                    </div>
+                                ))
+                            }
+                        </div>
+                }
 
-                <div className={styles.card_container}>
-                    {
-                        data?.map((home, index) => (
-                            <div className={styles.col} key={index}>
-                                <Cards 
-                                    data={home} 
-                                    showDelete={true}
-                                    editClick={(e)=>{setdata_to_edit(e); setopenEdit(true) }}
-                                    deleteClick={(e)=>{setid_to_ops(e); setopenDelete(true)}}
-                                />
-                            </div>
-                        ))
-                    }
-                </div>
             </div>
 
             <div className={dashStyle.addBtn} onClick={() => setopen(true)}>
@@ -88,30 +98,30 @@ const [deleting, setdeleting] = useState(false)
                 <span>Add Home</span>
             </div>
             <Modal open={open} closeModal={() => setopen(false)}>
-                <AddHomeForm 
-                    closeModal={()=>setopen(false)}
-                    onSuccess={()=>getUserHomes()}
+                <AddHomeForm
+                    closeModal={() => setopen(false)}
+                    onSuccess={() => getUserHomes()}
                 />
             </Modal>
 
             <Modal open={openEdit} closeModal={() => setopenEdit(false)}>
-                <EditHomeForm 
-                    defaultData={data_to_edit} 
-                    closeModal={()=>setopenEdit(false)}  
-                    onSuccess={()=>getUserHomes()}
+                <EditHomeForm
+                    defaultData={data_to_edit}
+                    closeModal={() => setopenEdit(false)}
+                    onSuccess={() => getUserHomes()}
                 />
             </Modal>
 
             <Modal open={openDelete} closeModal={() => setopenDelete(false)}>
                 <div className={dashStyle.deleteCont}>
-                    <span style={{textAlign:'center'}}>Are you sure you want to delete this home</span>
+                    <span style={{ textAlign: 'center' }}>Are you sure you want to delete this home</span>
                     <div className={dashStyle.actions} >
-                        <span onClick={()=>setopenDelete(false)}>Cancel</span>
-                        <span style={{color:'maroon'}} onClick={()=>deleteUserHomes(id_to_ops)}>
-                            {deleting ? "Deleting..." : "Yes"} 
+                        <span onClick={() => setopenDelete(false)}>Cancel</span>
+                        <span style={{ color: 'maroon' }} onClick={() => deleteUserHomes(id_to_ops)}>
+                            {deleting ? "Deleting..." : "Yes"}
                         </span>
                     </div>
-                   
+
                 </div>
             </Modal>
 
