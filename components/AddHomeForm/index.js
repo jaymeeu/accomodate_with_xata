@@ -8,7 +8,7 @@ import axios from 'axios';
 import { badges } from '../../public/data';
 
 
-export default function AddHomeForm({closeModal}) {
+export default function AddHomeForm({closeModal, onSuccess}) {
 
     const [user_id, setuser_id] = useState('')
 
@@ -76,7 +76,7 @@ export default function AddHomeForm({closeModal}) {
             data.user_id = user_id
 
             await axios.post('/api/addHome', data)
-            .then((res)=>console.log(res, 'result'))
+            .then((res)=>onSuccess())
             .catch((err)=>console.log(err, 'error'))
             .finally(()=>{
                 setaddingHome(false);

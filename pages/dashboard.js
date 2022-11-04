@@ -43,7 +43,7 @@ const [deleting, setdeleting] = useState(false)
     const deleteUserHomes = async (id) => {
         setdeleting(true)
         await axios.post('/api/deleteHome', {"id" : id})
-            .then((res) => { })
+            .then((res) => {getUserHomes()})
             .catch((error) => {console.log(error, "error")})
             .finally(() => {
                 setdeleting(false);
@@ -88,7 +88,10 @@ const [deleting, setdeleting] = useState(false)
                 <span>Add Home</span>
             </div>
             <Modal open={open} closeModal={() => setopen(false)}>
-                <AddHomeForm closeModal={()=>setopen(false)} />
+                <AddHomeForm 
+                    closeModal={()=>setopen(false)}
+                    onSuccess={()=>getUserHomes()}
+                />
             </Modal>
 
             <Modal open={openEdit} closeModal={() => setopenEdit(false)}>

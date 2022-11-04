@@ -6,6 +6,7 @@ const getUserHomes = async (req, res) => {
 
   const records =  await xata.db.homes
   .filter("host.id", req.body.user_id)
+  .sort("id", "desc")
   .select(["*", "host.*"])
   .getPaginated({
     pagination: {
