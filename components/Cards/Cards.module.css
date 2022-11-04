@@ -59,6 +59,15 @@
   font-size: 15px;
     line-height: 19px;
   font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.icons{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
 }
 .price span{
   font-weight: 300;

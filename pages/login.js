@@ -59,7 +59,7 @@ const Login = () => {
                     <input disabled={loading} className={styles.buttone} type="submit" name="submit" value={loading ? "Loading...." : "Login"} />
                 </div>
                 <div className={styles.sign_cont}>
-                    <span>Don have an account?</span>
+                    <span>Don&#39;t have an account?</span>
                     <Link className={styles.linkss} href="/signup"><span> Sign up </span>
                     </Link>
                 </div>

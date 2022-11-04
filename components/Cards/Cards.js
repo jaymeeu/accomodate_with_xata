@@ -6,12 +6,13 @@ import "swiper/css/pagination";
 import styles from "./Cards.module.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper";
-import { AiFillStar } from 'react-icons/ai'
+import { AiFillStar, AiTwotoneEdit } from 'react-icons/ai'
 import { FiHeart } from 'react-icons/fi'
 import moment from "moment"
 import Image from 'next/image';
+import { BsTrashFill } from 'react-icons/bs';
 
-function Cards({ data }) {
+function Cards({ data, showDelete,editClick, deleteClick }) {
 
     const [showPagination, setshowPagination] = useState(false)
     return (
@@ -57,7 +58,15 @@ function Cards({ data }) {
                 {moment(data?.dateFrom).format('MMM DD')} - {moment(data?.dateTill).format('MMM DD')}
             </div>
             <div className={styles.price}>
-                ${data?.price} <span>night</span>
+               <div>${data?.price} <span>night</span></div> 
+               {
+                showDelete &&
+                <div className={styles.icons}>
+                    <AiTwotoneEdit onClick={()=>editClick(data)} size={18} color='var(--blue)'/>
+                    <BsTrashFill onClick={()=>deleteClick(data?.id)} color='maroon'/>
+                </div>
+               }
+                
             </div>
         </div>
     )

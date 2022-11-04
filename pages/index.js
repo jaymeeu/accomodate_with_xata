@@ -15,6 +15,7 @@ export default function Home() {
 
   const [data, setData] = useState([])
   const [dataDuplicate, setDataDuplicate] = useState([])
+  const [loading, setloading] = useState(false)
 
   const [selection, setselection] = useState('OMG!')
 
@@ -23,6 +24,7 @@ export default function Home() {
   }, [])
 
   const getAllHomes = async  ()  =>{
+    setloading(true)
     await axios.get('/api/getHomes')
     .then((res)=>{
       const data = res.data.filter((home) => home.category === selection)
@@ -30,7 +32,9 @@ export default function Home() {
       setDataDuplicate(res.data)
     })
     .catch((error)=>console.log(error, "error"))
-    .finally(()=>{})
+    .finally(()=>{
+      setloading(false)
+    })
   }
 
   const filterData = (e) => {
@@ -44,7 +48,7 @@ export default function Home() {
   return (
       <section className={styles.home}>
         <Head>
-          <title>Accomodate mkmkm</title>
+          <title>Accomodate</title>
           <meta name="description" content="Accomodate - home for you" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
@@ -64,16 +68,25 @@ export default function Home() {
             showMap ?
               <CustomMap data={data} />
               :
-              <div className={styles.card_container}>
-                {
-                  data?.map((home, index) => (
-                    <div className={styles.col} key={index}>
-                      <Cards data={home} />
-                    </div>
-                  ))
-                }
-              </div>
-          }
+              
+                loading ? 
+                  <div className={styles.toCenter}>
+                    <span className={styles.loader}></span>
+                  </div>
+                  :
+
+                  <div className={styles.card_container}>
+                  {
+                    data?.map((home, index) => (
+                      <div className={styles.col} key={index}>
+                        <Cards data={home} />
+                      </div>
+                    ))
+                  }
+                </div>
+              }
+             
+          
         </div>
         {
           !showMap &&

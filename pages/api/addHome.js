@@ -1,9 +1,10 @@
-import { getXataClient } from '../../utility/xata'
+import { getXataClient } from '../../utils/xata'
 
 const xata = getXataClient()
 
-const registerUser = async (req, res) => {
+const addHome = async (req, res) => {
    const result =  await xata.db.homes.create({
+    id: req.body.id,
     title: req.body.title,
     price: parseFloat(req.body.price),
     dateFrom: new Date(req.body.dateFrom),
@@ -17,4 +18,4 @@ const registerUser = async (req, res) => {
     });
     res.send(result)
 }
-export default registerUser
+export default addHome

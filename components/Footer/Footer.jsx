@@ -8,7 +8,7 @@ const Footer = () => {
     <div className={`${styles.footer_container} ${styles.space_between}`}>
         <div className={`${styles.footer_left} ${styles.space_between} `}>
             <span className={styles.each_left}>
-                &#169; 2022 Airbnb, Inc.
+                &#169; 2022 Accomodate, Inc.
             </span>
             <span className={styles.each_left}>
             &#8729;

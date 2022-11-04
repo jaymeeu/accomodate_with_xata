@@ -22,3 +22,20 @@
   .addBtn:hover{
     transform: scale(1.02);
   }
+  .deleteCont{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    max-width: 300px;
+  }
+  .actions{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+  }
+  .actions span{
+    user-select: none;
+    cursor: pointer;
+  }

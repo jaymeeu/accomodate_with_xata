@@ -9,14 +9,20 @@ import { IoMdAdd } from 'react-icons/io'
 import AddHomeForm from '../components/AddHomeForm'
 import axios from 'axios'
 import { useRouter } from 'next/router'
+import EditHomeForm from '../components/AddHomeForm/EditHome'
 
 export default function Dashboard() {
     const router = useRouter();
     const [data, setData] = useState([])
 
+    const [openDelete, setopenDelete] = useState(false)
+    const [openEdit, setopenEdit] = useState(false)
+    const [id_to_ops, setid_to_ops] = useState('')
+    const [data_to_edit, setdata_to_edit] = useState({})
+
     useEffect(() => {
         getUserHomes()
-    }, [data])
+    }, [])
 
     const getUserHomes = async () => {
         const user_id = JSON.parse(localStorage.getItem('user_info'))?.user_id
@@ -31,6 +37,18 @@ export default function Dashboard() {
         else {
             router.push('login')
         }
+    }
+const [deleting, setdeleting] = useState(false)
+
+    const deleteUserHomes = async (id) => {
+        setdeleting(true)
+        await axios.post('/api/deleteHome', {"id" : id})
+            .then((res) => { })
+            .catch((error) => {console.log(error, "error")})
+            .finally(() => {
+                setdeleting(false);
+                setopenDelete(false)
+             })
     }
 
 
@@ -53,7 +71,12 @@ export default function Dashboard() {
                     {
                         data?.map((home, index) => (
                             <div className={styles.col} key={index}>
-                                <Cards data={home} />
+                                <Cards 
+                                    data={home} 
+                                    showDelete={true}
+                                    editClick={(e)=>{setdata_to_edit(e); setopenEdit(true) }}
+                                    deleteClick={(e)=>{setid_to_ops(e); setopenDelete(true)}}
+                                />
                             </div>
                         ))
                     }
@@ -66,6 +89,27 @@ export default function Dashboard() {
             </div>
             <Modal open={open} closeModal={() => setopen(false)}>
                 <AddHomeForm closeModal={()=>setopen(false)} />
+            </Modal>
+
+            <Modal open={openEdit} closeModal={() => setopenEdit(false)}>
+                <EditHomeForm 
+                    defaultData={data_to_edit} 
+                    closeModal={()=>setopenEdit(false)}  
+                    onSuccess={()=>getUserHomes()}
+                />
+            </Modal>
+
+            <Modal open={openDelete} closeModal={() => setopenDelete(false)}>
+                <div className={dashStyle.deleteCont}>
+                    <span style={{textAlign:'center'}}>Are you sure you want to delete this home</span>
+                    <div className={dashStyle.actions} >
+                        <span onClick={()=>setopenDelete(false)}>Cancel</span>
+                        <span style={{color:'maroon'}} onClick={()=>deleteUserHomes(id_to_ops)}>
+                            {deleting ? "Deleting..." : "Yes"} 
+                        </span>
+                    </div>
+                   
+                </div>
             </Modal>
 
         </section>

@@ -11,7 +11,7 @@ body {
   --gray : #EBEBEB;
   --dark : #222222;
   --dark-gray : #484848;
-  --redish : rgb(84, 105, 212);
+  --blue : rgb(84, 105, 212);
   --red : rgb(84, 105, 212);
 }
 .space_between {

@@ -38,7 +38,7 @@ const Header = () => {
                     <span className={styles.text_filter}>Any week</span>
                     <div className={styles.divider}></div>
                     <span className={styles.text_filterv2}>Add guests</span>
-                    <div className={styles.cirle_red} style={{ backgroundColor: "var(--redish)" }}>
+                    <div className={styles.cirle_red} style={{ backgroundColor: "var(--blue)" }}>
                         <BiSearch color='white' />
                     </div>
                 </div>
